@@ -1,0 +1,661 @@
+ postgres=# CREATE TABLE Books (
+postgres(#     Book_ID SERIAL PRIMARY KEY,
+postgres(#     Title VARCHAR(100),
+postgres(#     Author VARCHAR(100),
+postgres(#     Genre VARCHAR(50),
+postgres(#     Published_Year INT,
+postgres(#     Price NUMERIC(10, 2),
+postgres(#     Stock INT
+postgres(# );
+CREATE TABLE
+postgres=# CREATE TABLE Customers (
+postgres(#     Customer_ID SERIAL PRIMARY KEY,
+postgres(#     Name VARCHAR(100),
+postgres(#     Email VARCHAR(100),
+postgres(#     Phone VARCHAR(15),
+postgres(#     City VARCHAR(50),
+postgres(#     Country VARCHAR(150)
+postgres(# );
+CREATE TABLE
+postgres=# CREATE TABLE Orders (
+postgres(#     Order_ID SERIAL PRIMARY KEY,
+postgres(#     Customer_ID INT REFERENCES Customers(Customer_ID),
+postgres(#     Book_ID INT REFERENCES Books(Book_ID),
+postgres(#     Order_Date DATE,
+postgres(#     Quantity INT,
+postgres(#     Total_Amount NUMERIC(10, 2)
+postgres(# );
+CREATE TABLE
+postgres=# COPY Books(Book_ID, Title, Author, Genre, Published_Year, Price, Stock)
+postgres-# FROM 'C:\Books.csv'
+postgres-# CSV HEADER;
+COPY 500
+postgres=# COPY Customers(Customer_ID, Name, Email, Phone, City, Country)
+postgres-# FROM 'C:\Customers.csv'
+postgres-# CSV HEADER;
+COPY 500
+postgres=# COPY Orders(Order_ID, Customer_ID, Book_ID, Order_Date, Quantity, Total_Amount)
+postgres-# FROM 'C:\Orders.csv'
+postgres-# CSV HEADER;
+COPY 500
+postgres=# select * from Books;
+ book_id |                            title                            |           author           |      genre      | published_year | price | stock
+---------+-------------------------------------------------------------+----------------------------+-----------------+----------------+-------+-------
+       1 | Configurable modular throughput                             | Joseph Crane               | Biography       |           1949 | 21.34 |   100
+       2 | Persevering reciprocal knowledge user                       | Mario Moore                | Fantasy         |           1971 | 35.80 |    19
+       3 | Streamlined coherent initiative                             | Derrick Howard             | Non-Fiction     |           1913 | 15.75 |    27
+       4 | Customizable 24hour product                                 | Christopher Andrews        | Fiction         |           2020 | 43.52 |     8
+       5 | Adaptive 5thgeneration encoding                             | Juan Miller                | Fantasy         |           1956 | 10.95 |    16
+       6 | Advanced encompassing implementation                        | Bryan Morgan               | Biography       |           1985 |  6.56 |     2
+       7 | Open-architected exuding structure                          | Jacqueline Young           | Romance         |           1927 | 43.63 |    95
+       8 | Persistent local encoding                                   | Troy Cox                   | Science Fiction |           2019 | 48.99 |    84
+       9 | Optimized interactive challenge                             | Colin Buckley              | Fantasy         |           1987 | 14.33 |    70
+      10 | Ergonomic national hub                                      | Samantha Ruiz              | Mystery         |           2015 | 24.63 |    25
+      11 | Secured zero tolerance time-frame                           | Denise Barnes              | Fantasy         |           1998 | 35.95 |    10
+      12 | Polarized optimal array                                     | Destiny Scott              | Non-Fiction     |           1989 | 27.43 |    63
+      13 | Adaptive 5thgeneration orchestration                        | Jaclyn Miller              | Romance         |           1913 | 14.04 |    99
+      14 | Re-engineered demand-driven parallelism                     | Jeremy Hayes               | Science Fiction |           1933 |  6.04 |    95
+      15 | User-friendly motivating strategy                           | Keith Smith                | Non-Fiction     |           1997 | 23.83 |    58
+      16 | Vision-oriented tangible project                            | Christopher Price          | Mystery         |           1941 | 10.07 |     8
+      17 | Reduced secondary core                                      | Benjamin Peters            | Fantasy         |           1966 |  5.37 |    45
+      18 | Adaptive 4thgeneration concept                              | Hector Palmer              | Non-Fiction     |           2021 | 39.47 |    32
+      19 | Progressive asymmetric Internet solution                    | Sean Miller                | Science Fiction |           1990 | 11.31 |     1
+      20 | Face-to-face systematic throughput                          | Teresa Brennan             | Non-Fiction     |           1978 | 48.13 |    64
+      21 | Down-sized static interface                                 | Todd Brown                 | Biography       |           1925 | 47.13 |    87
+      22 | Multi-layered optimizing migration                          | Wesley Escobar             | Fiction         |           1908 | 39.23 |    78
+      23 | Reverse-engineered context-sensitive hardware               | Christina Hernandez        | Mystery         |           1967 | 38.55 |    70
+      24 | Ergonomic incremental hub                                   | Tanya Mcdonald             | Biography       |           1907 | 32.74 |    54
+      25 | Devolved mobile conglomeration                              | Alexander Bailey           | Biography       |           1984 |  8.55 |    79
+      26 | Multi-channeled multi-tasking capability                    | Patricia Buck              | Science Fiction |           1964 | 21.05 |    41
+      27 | Team-oriented human-resource access                         | Cody Shah                  | Fantasy         |           1927 | 42.14 |    76
+      28 | Expanded analyzing portal                                   | Lisa Coffey                | Fiction         |           1941 | 37.51 |    79
+      29 | Quality-focused multi-tasking challenge                     | Katrina Underwood          | Fiction         |           1905 | 31.12 |   100
+      30 | Multi-layered global open system                            | Jose Meyer                 | Biography       |           2012 | 30.58 |    37
+      31 | Implemented encompassing conglomeration                     | Melissa Taylor             | Fiction         |           2010 | 21.23 |    44
+      32 | Synergistic dedicated concept                               | Lisa Bailey                | Mystery         |           2021 | 21.56 |   100
+      33 | Team-oriented empowering synergy                            | Sandra Williams            | Non-Fiction     |           2023 | 35.06 |    49
+      34 | Stand-alone multimedia throughput                           | Jason Jefferson            | Fantasy         |           1939 | 16.49 |    43
+      35 | Grass-roots solution-oriented adapter                       | William Turner             | Non-Fiction     |           2018 | 31.81 |    85
+      36 | Open-source needs-based secured line                        | Jacob French               | Mystery         |           1949 | 34.51 |    86
+      37 | Up-sized tertiary archive                                   | Todd Kennedy               | Fantasy         |           1955 | 13.08 |     3
+      38 | Pre-emptive asynchronous leverage                           | Courtney Nichols           | Fantasy         |           2022 | 16.47 |    72
+postgres=# select * from Customers;
+ customer_id |           name           |                 email                  |   phone    |         city          |                       country       
+-------------+--------------------------+----------------------------------------+------------+-----------------------+-----------------------------------------------------
+           1 | Deborah Griffith         | balljoseph@wright-keith.net            | 1234567891 | South Craigfort       | Denmark
+           2 | Crystal Clements         | kimberlybennett@curtis.com             | 1234567892 | East Derekberg        | Nicaragua
+           3 | Susan Fuller             | beanmichael@burnett-stewart.net        | 1234567893 | Austinbury            | Equatorial Guinea
+           4 | Jamie Ramirez            | amandahood@warren.com                  | 1234567894 | Dianamouth            | Slovenia
+           5 | Marcus Murphy            | connerjohn@yahoo.com                   | 1234567895 | Smithbury             | Guinea-Bissau
+           6 | Stephen Vasquez          | ricemiguel@yahoo.com                   | 1234567896 | Hamiltonstad          | Rwanda
+           7 | Susan Hicks              | jeffrey91@yahoo.com                    | 1234567897 | East Rebecca          | Montenegro
+           8 | Matthew Johnson          | austinkenneth@manning.net              | 1234567898 | Kirstenborough        | Israel
+           9 | Matthew Williams         | jeffrey41@diaz.com                     | 1234567899 | Rebeccafurt           | Somalia
+          10 | Ronald Osborn            | staciekelley@heath.com                 | 1234567900 | Lake Benjamin         | Cameroon
+          11 | Thomas Garcia            | rmiller@gmail.com                      | 1234567901 | West Monicabury       | Argentina
+          12 | Jennifer Murray          | wilsonbrittany@hotmail.com             | 1234567902 | South Ashleychester   | Zimbabwe
+          13 | Kristine Kim             | sarahwilliams@hotmail.com              | 1234567903 | Lake Robert           | Nigeria
+          14 | John Wood                | johnsonalexander@gmail.com             | 1234567904 | Richardsonville       | New Caledonia
+          15 | Vanessa Gaines           | tbullock@gmail.com                     | 1234567905 | Rodriguezmouth        | Wallis and Futuna
+          16 | Stacey Flores            | jackjackson@hotmail.com                | 1234567906 | East Michaelfurt      | Saint Helena
+          17 | Christine Maldonado      | ztaylor@yahoo.com                      | 1234567907 | Smithborough          | Chile
+          18 | David Watson             | laurenlawson@alvarez-mcfarland.com     | 1234567908 | New Josephtown        | Equatorial Guinea
+          19 | Marc Nash                | joshua59@gmail.com                     | 1234567909 | Davidton              | French Guiana
+          20 | Robert Salas             | schultzjohn@thomas.com                 | 1234567910 | Schultzchester        | Denmark
+          21 | Edgar Frost              | maria51@gmail.com                      | 1234567911 | Jonathanhaven         | Saudi Arabia
+          22 | Stacey Adams             | fjohnson@gmail.com                     | 1234567912 | Clintonmouth          | Iceland
+          23 | Hannah Drake             | sandersallen@hotmail.com               | 1234567913 | Deannabury            | Faroe Islands
+          24 | Christina Mitchell       | justin67@yahoo.com                     | 1234567914 | Bridgestown           | Trinidad and Tobago
+          25 | James Martin             | reynoldstyrone@wiggins.com             | 1234567915 | North James           | Yemen
+          26 | Dylan Bell               | isaac43@gmail.com                      | 1234567916 | North Aaron           | Guam
+          27 | Debbie Sampson           | collin21@hotmail.com                   | 1234567917 | Christopherburgh      | Bahamas
+          28 | William Burns            | valeriemack@gmail.com                  | 1234567918 | South Kristyville     | Netherlands
+          29 | John Maxwell             | martinsamantha@martin.net              | 1234567919 | Nolanstad             | Cuba
+          30 | Dylan Garcia             | oanderson@yahoo.com                    | 1234567920 | Hallfort              | Turkey
+          31 | Amanda Morton            | lolsen@jones.com                       | 1234567921 | Marktown              | Antigua and Barbuda
+          32 | Jeffrey Shannon          | nmcmillan@smith.com                    | 1234567922 | New Carlosbury        | Malta
+          33 | Kristin Hall             | michele78@yahoo.com                    | 1234567923 | Underwoodfurt         | Cuba
+          34 | Ryan Love                | joseph37@gmail.com                     | 1234567924 | Leestad               | Anguilla
+          35 | Daniel Gonzalez          | nday@combs.com                         | 1234567925 | Hoovermouth           | Fiji
+          36 | Benjamin Wallace         | alexander26@hotmail.com                | 1234567926 | Schroederton          | Botswana
+postgres=# select * from Orders;
+ order_id | customer_id | book_id | order_date | quantity | total_amount
+----------+-------------+---------+------------+----------+--------------
+        1 |          84 |     169 | 2023-05-26 |        8 |       188.56
+        2 |         137 |     301 | 2023-01-23 |       10 |       216.60
+        3 |         216 |     261 | 2024-05-27 |        6 |        85.50
+        4 |         433 |     343 | 2023-11-25 |        7 |       301.21
+        5 |          14 |     431 | 2023-07-26 |        7 |       136.36
+        6 |         439 |     119 | 2024-10-11 |        5 |       249.40
+        7 |         195 |     467 | 2023-10-23 |        6 |        82.92
+        8 |          32 |     159 | 2024-05-07 |        4 |       144.84
+        9 |         109 |     407 | 2024-01-04 |        9 |       379.71
+       10 |          94 |     122 | 2024-07-09 |        4 |       123.00
+       11 |         131 |     206 | 2023-10-16 |        1 |        38.01
+       12 |         454 |       3 | 2024-06-17 |        2 |        31.50
+       13 |         420 |     180 | 2023-06-08 |        5 |       125.45
+       14 |         454 |     319 | 2023-08-24 |        2 |        85.22
+       15 |         127 |     479 | 2023-01-10 |        6 |       229.62
+       16 |         412 |     196 | 2023-10-06 |        8 |        53.52
+       17 |         462 |     481 | 2023-03-20 |        5 |        52.75
+       18 |         377 |     101 | 2024-08-07 |        4 |       193.96
+       19 |         496 |      60 | 2023-11-17 |        9 |       316.26
+       20 |         195 |      67 | 2023-07-14 |        1 |        10.23
+       21 |         356 |     287 | 2024-12-05 |        3 |       120.57
+       22 |         177 |     427 | 2024-06-10 |        3 |        54.00
+       23 |         119 |     301 | 2023-08-04 |        3 |        64.98
+       24 |         266 |     192 | 2023-07-10 |        3 |       145.11
+       25 |         265 |     250 | 2023-05-25 |       10 |       126.50
+       26 |         294 |     407 | 2023-06-11 |        1 |        42.19
+       27 |         310 |     156 | 2024-12-03 |        1 |        31.68
+       28 |         151 |     423 | 2024-11-27 |        8 |       205.04
+       29 |         305 |     446 | 2023-10-05 |        8 |       275.92
+       30 |         438 |     248 | 2023-09-23 |        6 |       281.94
+       31 |         386 |     279 | 2024-03-12 |        8 |       244.00
+       32 |         292 |     313 | 2024-12-06 |        4 |       188.64
+       33 |         478 |     253 | 2024-04-15 |        5 |        58.30
+       34 |         463 |     146 | 2024-06-27 |        3 |        43.50
+       35 |         303 |     172 | 2023-07-08 |        5 |       184.10
+       36 |         417 |     260 | 2024-01-21 |        9 |       446.31
+       37 |         110 |     411 | 2023-12-27 |        4 |        60.12
+       38 |          15 |     466 | 2023-06-26 |        4 |       148.68
+postgres=# -- 1) Retrieve all books in the "Fiction" genre
+postgres=# select * from Books
+postgres-# where Genre='Fiction';
+ book_id |                     title                     |       author        |  genre  | published_year | price | stock
+---------+-----------------------------------------------+---------------------+---------+----------------+-------+-------
+       4 | Customizable 24hour product                   | Christopher Andrews | Fiction |           2020 | 43.52 |     8
+      22 | Multi-layered optimizing migration            | Wesley Escobar      | Fiction |           1908 | 39.23 |    78
+      28 | Expanded analyzing portal                     | Lisa Coffey         | Fiction |           1941 | 37.51 |    79
+      29 | Quality-focused multi-tasking challenge       | Katrina Underwood   | Fiction |           1905 | 31.12 |   100
+      31 | Implemented encompassing conglomeration       | Melissa Taylor      | Fiction |           2010 | 21.23 |    44
+      39 | Optimized national process improvement        | Megan Goodwin       | Fiction |           1978 | 10.99 |    42
+      40 | Adaptive didactic interface                   | Natalie Gonzalez    | Fiction |           1923 | 25.97 |    94
+      47 | Reverse-engineered directional conglomeration | John Christian      | Fiction |           2006 | 20.37 |    90
+      62 | Re-contextualized real-time strategy          | Nicole Lynch        | Fiction |           1953 | 26.34 |    23
+      63 | Polarized heuristic database                  | Franklin Mack       | Fiction |           1989 | 22.38 |    56
+     100 | Synchronized client-server service-desk       | James Alvarado      | Fiction |           1906 | 49.89 |    29
+     116 | Multi-tiered foreground contingency           | Jamie Gates         | Fiction |           1938 | 41.82 |    50
+     125 | Public-key analyzing Graphic Interface        | Abigail Madden      | Fiction |           1990 | 32.41 |    16
+     130 | Realigned context-sensitive pricing structure | Jason Rodriguez     | Fiction |           2004 |  6.64 |    90
+     134 | Polarized bandwidth-monitored throughput      | Linda Newman        | Fiction |           1955 | 35.72 |    49
+     142 | Multi-tiered responsive parallelism           | Amanda Wilson       | Fiction |           1940 | 48.96 |    11
+     143 | Networked multimedia support                  | Nancy Goodman       | Fiction |           2012 | 43.65 |    50
+     144 | Future-proofed scalable software              | Matthew Wolf        | Fiction |           1945 | 19.27 |    90
+     156 | Synergistic grid-enabled website              | Brandon Black       | Fiction |           1953 | 31.68 |    34
+     173 | Ergonomic foreground Graphic Interface        | Patrick Williams    | Fiction |           1948 |  6.07 |   100
+     185 | Networked object-oriented definition          | Kelly Vazquez       | Fiction |           1940 | 21.98 |    10
+     187 | Total well-modulated groupware                | Kenneth Phillips    | Fiction |           1989 | 22.98 |     7
+     214 | Fundamental methodical open architecture      | Jeffery Green       | Fiction |           2005 | 18.16 |    47
+     220 | Multi-lateral zero-defect matrix              | Nicole Hughes       | Fiction |           1904 | 16.51 |    60
+     249 | Fundamental national infrastructure           | Nancy Austin        | Fiction |           1928 | 32.95 |    58
+     251 | Seamless 5thgeneration challenge              | Michelle Harris     | Fiction |           1906 |  8.87 |    98
+     252 | Down-sized high-level encoding                | Gabriela Russell MD | Fiction |           1902 | 12.62 |    43
+     253 | Horizontal didactic structure                 | Robert Rodriguez    | Fiction |           1961 | 11.66 |    21
+     260 | Business-focused methodical application       | Brian King          | Fiction |           1907 | 49.59 |    10
+     263 | Right-sized bifurcated definition             | Kayla Wilkinson     | Fiction |           1965 |  9.79 |     3
+     274 | Automated systemic functionalities            | Matthew Thomas      | Fiction |           1903 | 48.80 |    72
+     278 | Exclusive asymmetric installation             | Benjamin Flores     | Fiction |           1901 | 48.61 |    69
+     297 | Advanced well-modulated architecture          | Chad Craig          | Fiction |           2016 | 35.65 |     2
+     298 | Assimilated composite archive                 | Mark Gibson         | Fiction |           1957 | 46.66 |    62
+     299 | Centralized disintermediate array             | Donald Wiggins      | Fiction |           1909 | 28.19 |    73
+     302 | Ergonomic leadingedge portal                  | James Curtis        | Fiction |           1981 | 28.67 |    92
+     315 | Virtual exuding Internet solution             | Anne George         | Fiction |           2012 | 42.90 |    40
+     324 | Diverse dynamic contingency                   | James Duran         | Fiction |           1993 | 46.08 |    23
+postgres=#
+postgres=# -- 2) Find books published after the year 1950
+postgres=# select * from Books
+postgres-# where Published_Year > 1950;
+ book_id |                            title                            |           author           |      genre      | published_year | price | stock
+---------+-------------------------------------------------------------+----------------------------+-----------------+----------------+-------+-------
+       2 | Persevering reciprocal knowledge user                       | Mario Moore                | Fantasy         |           1971 | 35.80 |    19
+       4 | Customizable 24hour product                                 | Christopher Andrews        | Fiction         |           2020 | 43.52 |     8
+       5 | Adaptive 5thgeneration encoding                             | Juan Miller                | Fantasy         |           1956 | 10.95 |    16
+       6 | Advanced encompassing implementation                        | Bryan Morgan               | Biography       |           1985 |  6.56 |     2
+       8 | Persistent local encoding                                   | Troy Cox                   | Science Fiction |           2019 | 48.99 |    84
+       9 | Optimized interactive challenge                             | Colin Buckley              | Fantasy         |           1987 | 14.33 |    70
+      10 | Ergonomic national hub                                      | Samantha Ruiz              | Mystery         |           2015 | 24.63 |    25
+      11 | Secured zero tolerance time-frame                           | Denise Barnes              | Fantasy         |           1998 | 35.95 |    10
+      12 | Polarized optimal array                                     | Destiny Scott              | Non-Fiction     |           1989 | 27.43 |    63
+      15 | User-friendly motivating strategy                           | Keith Smith                | Non-Fiction     |           1997 | 23.83 |    58
+      17 | Reduced secondary core                                      | Benjamin Peters            | Fantasy         |           1966 |  5.37 |    45
+      18 | Adaptive 4thgeneration concept                              | Hector Palmer              | Non-Fiction     |           2021 | 39.47 |    32
+      19 | Progressive asymmetric Internet solution                    | Sean Miller                | Science Fiction |           1990 | 11.31 |     1
+      20 | Face-to-face systematic throughput                          | Teresa Brennan             | Non-Fiction     |           1978 | 48.13 |    64
+      23 | Reverse-engineered context-sensitive hardware               | Christina Hernandez        | Mystery         |           1967 | 38.55 |    70
+      25 | Devolved mobile conglomeration                              | Alexander Bailey           | Biography       |           1984 |  8.55 |    79
+      26 | Multi-channeled multi-tasking capability                    | Patricia Buck              | Science Fiction |           1964 | 21.05 |    41
+      30 | Multi-layered global open system                            | Jose Meyer                 | Biography       |           2012 | 30.58 |    37
+      31 | Implemented encompassing conglomeration                     | Melissa Taylor             | Fiction         |           2010 | 21.23 |    44
+      32 | Synergistic dedicated concept                               | Lisa Bailey                | Mystery         |           2021 | 21.56 |   100
+      33 | Team-oriented empowering synergy                            | Sandra Williams            | Non-Fiction     |           2023 | 35.06 |    49
+      35 | Grass-roots solution-oriented adapter                       | William Turner             | Non-Fiction     |           2018 | 31.81 |    85
+      37 | Up-sized tertiary archive                                   | Todd Kennedy               | Fantasy         |           1955 | 13.08 |     3
+      38 | Pre-emptive asynchronous leverage                           | Courtney Nichols           | Fantasy         |           2022 | 16.47 |    72
+      39 | Optimized national process improvement                      | Megan Goodwin              | Fiction         |           1978 | 10.99 |    42
+      43 | Function-based zero-defect initiative                       | Daniel Nunez               | Romance         |           1952 | 47.39 |    61
+      44 | Networked systemic implementation                           | Ryan Frank                 | Science Fiction |           1965 | 13.55 |     0
+      45 | Centralized cohesive website                                | Luis Rogers                | Mystery         |           1984 | 25.49 |    59
+      47 | Reverse-engineered directional conglomeration               | John Christian             | Fiction         |           2006 | 20.37 |    90
+      48 | Multi-channeled 5thgeneration Internet solution             | Jennifer Powell            | Biography       |           1963 | 24.70 |    94
+      49 | Robust attitude-oriented attitude                           | Zachary Hayes              | Biography       |           1955 | 49.50 |    15
+      50 | Face-to-face responsive secured line                        | Lindsey Rodriguez          | Fantasy         |           1970 | 37.00 |    63
+      51 | Visionary optimizing project                                | Douglas Bush               | Biography       |           2022 | 46.30 |    95
+      52 | Triple-buffered neutral adapter                             | Kristi Phillips            | Science Fiction |           2003 | 16.53 |    85
+      53 | Triple-buffered multi-tasking help-desk                     | Brian Johnson              | Biography       |           1969 | 29.28 |    60
+      54 | Progressive bi-directional methodology                      | Adrian Taylor              | Fantasy         |           2015 | 44.78 |    27
+      56 | Integrated intermediate Internet solution                   | Stacy Cabrera              | Mystery         |           1976 |  7.87 |    67
+      57 | Team-oriented 3rdgeneration encryption                      | Sabrina Hernandez DVM      | Romance         |           1962 | 23.59 |    27
+postgres=#
+postgres=# --  3) List all customers from the Canada
+postgres=# select * from Customers
+postgres-# where country = 'Canada';
+ customer_id |      name       |          email          |   phone    |     city     | country
+-------------+-----------------+-------------------------+------------+--------------+---------
+          38 | Nicholas Harris | christine93@perkins.com | 1234567928 | Davistown    | Canada
+         415 | James Ramirez   | robert54@hall.com       | 1234568305 | Maxwelltown  | Canada
+         468 | David Hart      | stokesrebecca@gmail.com | 1234568358 | Thompsonfurt | Canada
+(3 rows)
+
+
+postgres=# -- 4) Show orders placed in November 2023
+postgres=# select * from Orders
+postgres-# where order_date BETWEEN '2023-11-01' AND '2023-11-30';
+ order_id | customer_id | book_id | order_date | quantity | total_amount
+----------+-------------+---------+------------+----------+--------------
+        4 |         433 |     343 | 2023-11-25 |        7 |       301.21
+       19 |         496 |      60 | 2023-11-17 |        9 |       316.26
+       75 |         291 |     375 | 2023-11-30 |        5 |       170.75
+      132 |         469 |     333 | 2023-11-22 |        7 |       194.32
+      137 |         474 |     471 | 2023-11-25 |        8 |       363.04
+      163 |         207 |     384 | 2023-11-23 |        3 |       101.76
+      182 |         129 |     293 | 2023-11-01 |        7 |       125.51
+      200 |         313 |     303 | 2023-11-23 |        1 |         6.57
+      213 |         325 |     447 | 2023-11-17 |        7 |       253.75
+      231 |          22 |     384 | 2023-11-11 |        1 |        33.92
+      245 |         386 |      97 | 2023-11-01 |        9 |       411.66
+      252 |         405 |     387 | 2023-11-15 |        5 |       237.10
+      257 |         123 |     403 | 2023-11-06 |        1 |        15.01
+      288 |           6 |     128 | 2023-11-13 |        1 |        24.04
+      307 |         368 |     133 | 2023-11-17 |        1 |        20.96
+      322 |         270 |     112 | 2023-11-08 |        2 |        16.04
+      344 |         385 |     218 | 2023-11-25 |        5 |        26.80
+      389 |         485 |     391 | 2023-11-18 |        2 |        66.84
+      414 |          23 |     234 | 2023-11-10 |        1 |         7.15
+      429 |         449 |     146 | 2023-11-01 |        7 |       101.50
+      432 |         420 |     168 | 2023-11-04 |        3 |        42.39
+      449 |         490 |     222 | 2023-11-18 |        1 |        29.59
+      461 |         317 |     196 | 2023-11-18 |        9 |        60.21
+      468 |         162 |     237 | 2023-11-22 |        6 |       242.58
+      483 |         459 |     202 | 2023-11-23 |       10 |       122.60
+(25 rows)
+
+postgres=# --  5) Retrieve the total stock of books available
+postgres=# select SUM(stock) as Total_stock
+postgres-# from Books;
+ total_stock
+-------------
+       25056
+(1 row)
+
+
+postgres=# -- 6) Find the details of the most expensive book
+
+postgres=# select * from books order by price DESC LIMIT 1;
+ book_id |                 title                 |    author    |  genre  | published_year | price | stock
+---------+---------------------------------------+--------------+---------+----------------+-------+-------
+     340 | Proactive system-worthy orchestration | Robert Scott | Mystery |           1907 | 49.98 |    88
+(1 row)
+
+
+postgres=# -- 7) Show all customers who ordered more than 1 quantity of a book
+postgres=# select * from Orders
+postgres-# where quantity > 1;
+ order_id | customer_id | book_id | order_date | quantity | total_amount
+----------+-------------+---------+------------+----------+--------------
+        1 |          84 |     169 | 2023-05-26 |        8 |       188.56
+        2 |         137 |     301 | 2023-01-23 |       10 |       216.60
+        3 |         216 |     261 | 2024-05-27 |        6 |        85.50
+        4 |         433 |     343 | 2023-11-25 |        7 |       301.21
+        5 |          14 |     431 | 2023-07-26 |        7 |       136.36
+        6 |         439 |     119 | 2024-10-11 |        5 |       249.40
+        7 |         195 |     467 | 2023-10-23 |        6 |        82.92
+        8 |          32 |     159 | 2024-05-07 |        4 |       144.84
+        9 |         109 |     407 | 2024-01-04 |        9 |       379.71
+       10 |          94 |     122 | 2024-07-09 |        4 |       123.00
+       12 |         454 |       3 | 2024-06-17 |        2 |        31.50
+       13 |         420 |     180 | 2023-06-08 |        5 |       125.45
+       14 |         454 |     319 | 2023-08-24 |        2 |        85.22
+       15 |         127 |     479 | 2023-01-10 |        6 |       229.62
+       16 |         412 |     196 | 2023-10-06 |        8 |        53.52
+       17 |         462 |     481 | 2023-03-20 |        5 |        52.75
+       18 |         377 |     101 | 2024-08-07 |        4 |       193.96
+       19 |         496 |      60 | 2023-11-17 |        9 |       316.26
+       21 |         356 |     287 | 2024-12-05 |        3 |       120.57
+       22 |         177 |     427 | 2024-06-10 |        3 |        54.00
+       23 |         119 |     301 | 2023-08-04 |        3 |        64.98
+       24 |         266 |     192 | 2023-07-10 |        3 |       145.11
+       25 |         265 |     250 | 2023-05-25 |       10 |       126.50
+       28 |         151 |     423 | 2024-11-27 |        8 |       205.04
+       29 |         305 |     446 | 2023-10-05 |        8 |       275.92
+       30 |         438 |     248 | 2023-09-23 |        6 |       281.94
+       31 |         386 |     279 | 2024-03-12 |        8 |       244.00
+       32 |         292 |     313 | 2024-12-06 |        4 |       188.64
+       33 |         478 |     253 | 2024-04-15 |        5 |        58.30
+       34 |         463 |     146 | 2024-06-27 |        3 |        43.50
+       35 |         303 |     172 | 2023-07-08 |        5 |       184.10
+       36 |         417 |     260 | 2024-01-21 |        9 |       446.31
+       37 |         110 |     411 | 2023-12-27 |        4 |        60.12
+       38 |          15 |     466 | 2023-06-26 |        4 |       148.68
+       39 |         488 |     422 | 2024-08-03 |        8 |       367.28
+       40 |         120 |     450 | 2024-07-03 |        2 |        91.50
+       41 |         418 |     147 | 2024-05-05 |        8 |       361.60
+       42 |         415 |      70 | 2023-09-19 |        3 |        70.35
+postgres=#
+postgres=# --  8) Retrieve all orders where the total amount exceeds $20
+postgres=# select * from Orders
+postgres-# where total_amount > 20;
+ order_id | customer_id | book_id | order_date | quantity | total_amount
+----------+-------------+---------+------------+----------+--------------
+        1 |          84 |     169 | 2023-05-26 |        8 |       188.56
+        2 |         137 |     301 | 2023-01-23 |       10 |       216.60
+        3 |         216 |     261 | 2024-05-27 |        6 |        85.50
+        4 |         433 |     343 | 2023-11-25 |        7 |       301.21
+        5 |          14 |     431 | 2023-07-26 |        7 |       136.36
+        6 |         439 |     119 | 2024-10-11 |        5 |       249.40
+        7 |         195 |     467 | 2023-10-23 |        6 |        82.92
+        8 |          32 |     159 | 2024-05-07 |        4 |       144.84
+        9 |         109 |     407 | 2024-01-04 |        9 |       379.71
+       10 |          94 |     122 | 2024-07-09 |        4 |       123.00
+       11 |         131 |     206 | 2023-10-16 |        1 |        38.01
+       12 |         454 |       3 | 2024-06-17 |        2 |        31.50
+       13 |         420 |     180 | 2023-06-08 |        5 |       125.45
+       14 |         454 |     319 | 2023-08-24 |        2 |        85.22
+       15 |         127 |     479 | 2023-01-10 |        6 |       229.62
+       16 |         412 |     196 | 2023-10-06 |        8 |        53.52
+       17 |         462 |     481 | 2023-03-20 |        5 |        52.75
+       18 |         377 |     101 | 2024-08-07 |        4 |       193.96
+       19 |         496 |      60 | 2023-11-17 |        9 |       316.26
+       21 |         356 |     287 | 2024-12-05 |        3 |       120.57
+       22 |         177 |     427 | 2024-06-10 |        3 |        54.00
+       23 |         119 |     301 | 2023-08-04 |        3 |        64.98
+       24 |         266 |     192 | 2023-07-10 |        3 |       145.11
+       25 |         265 |     250 | 2023-05-25 |       10 |       126.50
+       26 |         294 |     407 | 2023-06-11 |        1 |        42.19
+       27 |         310 |     156 | 2024-12-03 |        1 |        31.68
+       28 |         151 |     423 | 2024-11-27 |        8 |       205.04
+       29 |         305 |     446 | 2023-10-05 |        8 |       275.92
+       30 |         438 |     248 | 2023-09-23 |        6 |       281.94
+       31 |         386 |     279 | 2024-03-12 |        8 |       244.00
+       32 |         292 |     313 | 2024-12-06 |        4 |       188.64
+       33 |         478 |     253 | 2024-04-15 |        5 |        58.30
+       34 |         463 |     146 | 2024-06-27 |        3 |        43.50
+       35 |         303 |     172 | 2023-07-08 |        5 |       184.10
+       36 |         417 |     260 | 2024-01-21 |        9 |       446.31
+       37 |         110 |     411 | 2023-12-27 |        4 |        60.12
+       38 |          15 |     466 | 2023-06-26 |        4 |       148.68
+       39 |         488 |     422 | 2024-08-03 |        8 |       367.28
+postgres=#
+postgres=# --  9) List all genres available in the Books table
+
+postgres=# select DISTINCT genre from books;
+      genre
+-----------------
+ Romance
+ Biography
+ Mystery
+ Fantasy
+ Fiction
+ Non-Fiction
+ Science Fiction
+(7 rows)
+
+
+postgres=# -- 10) Find the book with the lowest stock
+postgres=# select * from books order by stock ASC LIMIT 1;
+ book_id |               title               |   author   |      genre      | published_year | price | stock
+---------+-----------------------------------+------------+-----------------+----------------+-------+-------
+      44 | Networked systemic implementation | Ryan Frank | Science Fiction |           1965 | 13.55 |     0
+(1 row)
+
+
+postgres=# -- 11) Calculate the total revenue generated from all orders
+postgres=# select sum(total_amount) as Revenue from orders;
+ revenue
+----------
+ 75628.66
+(1 row)
+
+
+postgres=# --  1) Retrieve the total number of books sold for each genre
+
+postgres=# select b.genre, sum(o.quantity) as total_books_sold from orders o JOIN books b ON o.book_id=b.book_id GROUP BY b.genre;
+      genre      | total_books_sold
+-----------------+------------------
+ Romance         |              439
+ Biography       |              285
+ Mystery         |              504
+ Fantasy         |              446
+ Fiction         |              225
+ Non-Fiction     |              351
+ Science Fiction |              447
+(7 rows)
+
+
+postgres=# -- 2) Find the average price of books in the "Fantasy" genre
+
+postgres=# select avg(price) as average_price from books where genre='Fantasy';
+    average_price
+---------------------
+ 25.9816901408450704
+(1 row)
+
+
+postgres=# -- 3) List customers who have placed at least 2 orders
+
+postgres=# select o.customer_id, c.name, count(o.order_id) as Order_count
+postgres-# from orders o
+postgres-# JOIN customers c ON o.customer_id = c.customer_id
+postgres-# GROUP BY o.customer_id, c.name
+postgres-# HAVING count(order_id)>=2;
+ customer_id |          name          | order_count
+-------------+------------------------+-------------
+         225 | Christopher Mccullough |           2
+         418 | Kiara Blankenship MD   |           3
+         322 | William Cameron        |           3
+         325 | Emily Vargas           |           4
+         376 | Justin Donaldson       |           2
+         486 | Melanie Kelly          |           2
+         461 | Crystal Pierce         |           3
+           2 | Crystal Clements       |           2
+         149 | Jason Robinson         |           3
+         173 | Victoria Dixon         |           2
+         120 | Rita Wallace           |           2
+         463 | Brandon Dunn           |           3
+         414 | Harold Burns           |           2
+         470 | Mary Vasquez DDS       |           2
+          14 | John Wood              |           2
+         368 | Diane Clark            |           2
+          23 | Hannah Drake           |           2
+          47 | Debra Park             |           3
+           6 | Stephen Vasquez        |           2
+         321 | Charlene Arroyo        |           2
+         117 | Molly Murphy           |           2
+         159 | Jennifer White         |           2
+         216 | Phillip Allen          |           2
+         199 | Anthony Simmons        |           2
+         154 | Kristin Montoya        |           2
+         425 | Ashley Perez           |           4
+          22 | Stacey Adams           |           3
+         378 | Anthony Kane           |           2
+         131 | Peter Smith            |           2
+          16 | Stacey Flores          |           3
+         387 | Tanya Morales          |           2
+         214 | Alexander Scott        |           3
+         361 | Joseph Davis           |           2
+         305 | Jeremy Pena            |           2
+         331 | Megan Martin           |           2
+         460 | Jasmine Garner         |           2
+         279 | Susan Hughes           |           2
+         467 | Anna Green             |           2
+postgres=#
+postgres=# -- 4) Find the most frequently ordered book
+                          ^
+postgres=# select o.book_id, b.title, count(o.order_id) as order_count from orders o JOIN books b ON o.book_id = b.book_id GROUP BY o.book_id, b.title ORDER BY count(o.order_id) DESC LIMIT 1;
+ book_id |          title           | order_count
+---------+--------------------------+-------------
+      88 | Robust tangible hardware |           4
+(1 row)
+
+
+postgres=# -- 5) Show the top 3 most expensive books of 'Fantasy' Genre
+
+postgres=# select * from books where genre = 'Fantasy' ORDER BY price DESC LIMIT 3;
+ book_id |               title               |      author       |  genre  | published_year | price | stock
+---------+-----------------------------------+-------------------+---------+----------------+-------+-------
+     240 | Stand-alone content-based hub     | Lisa Ellis        | Fantasy |           1957 | 49.90 |    41
+     462 | Innovative 3rdgeneration database | Allison Contreras | Fantasy |           1988 | 49.23 |    62
+     238 | Optimized even-keeled analyzer    | Sherri Griffith   | Fantasy |           1975 | 48.97 |    72
+(3 rows)
+
+
+postgres=# -- 6) Retrieve the total quantity of books sold by each author
+
+ postgres=# select b.author, sum(o.quantity) as total_quantity from orders o JOIN books b ON o.book_id = b.book_id group by b.author;
+           author           | total_quantity
+----------------------------+----------------
+ Jared Cortez               |             10
+ Tracy Parker               |             11
+ Taylor Wang                |              9
+ Cathy Knight               |              6
+ Bianca Matthews            |              3
+ Douglas Malone             |              6
+ James Alvarado             |              9
+ Betty Cross                |              6
+ Michael Hill               |             20
+ Steven Mcdonald            |             15
+ Paul Miles                 |             19
+ Leonard Vega               |              3
+ Grace Waller               |             15
+ Jordan Holt                |              3
+ Jacob French               |             17
+ Ryan Clark                 |              1
+ John Bradley               |             10
+ Rachel Travis              |              5
+ Margaret Moore             |              8
+ Amber Wells                |              3
+ Brandon Martin             |              7
+ Jackson Hill               |              4
+ Nicholas Roth              |              3
+ Carolyn Garcia             |             17
+ Gregory Wallace            |              5
+ Tonya Saunders             |             21
+ Jason Jefferson            |              2
+ Adrian Avery               |              6
+ Lisa Coffey                |              2
+ Amy Reyes                  |             10
+ Brad Vasquez               |             18
+ Jaclyn Miller              |              9
+ Chad Nichols               |             15
+ Jerry Fisher               |              5
+ Michael Walker             |             10
+ Kristin Farley             |             17
+ Brian Haney                |              9
+ Yolanda Mclean             |              3
+postgres=#
+postgres=# -- 7) List the cities where customers who spent over $30 are located
+
+ postgres=# select DISTINCT o.customer_id, c.city, o.total_amount from orders o JOIN customers c ON o.customer_id = c.customer_id where o.total_amount >= 30;
+ customer_id |         city          | total_amount
+-------------+-----------------------+--------------
+         140 | Leeview               |        30.50
+         404 | Lake Tyler            |       445.50
+         376 | Petersonbury          |        59.84
+         129 | Adkinsview            |       125.51
+         495 | Lake Elizabethborough |       221.45
+         328 | Hallshire             |       301.21
+         247 | Port Austinview       |        43.12
+         167 | Christopherchester    |       328.20
+          47 | Phillipsmouth         |        54.00
+         305 | Perrytown             |       275.92
+          54 | Brendafurt            |        35.24
+         232 | Port Jasonview        |       149.12
+         174 | Bakerton              |       152.50
+          24 | Bridgestown           |       216.25
+         356 | Evanshaven            |       120.57
+         161 | Darlenehaven          |        42.19
+         179 | Novakland             |       142.26
+         384 | Michaelview           |        66.24
+         160 | Lake Sarahside        |       101.37
+         153 | New Marie             |        55.64
+          86 | South Kathleen        |       229.62
+         413 | Elliottfort           |       237.10
+         255 | Moodyville            |        58.29
+         102 | Cherylport            |       112.42
+         461 | Port Davidhaven       |       166.00
+         329 | Marshallbury          |       156.66
+          57 | Lindaburgh            |       325.92
+         465 | Ryanville             |        44.61
+         265 | Port Erinberg         |       126.50
+         197 | East Amandaport       |       155.34
+         168 | Port Aaronstad        |       145.44
+         227 | West Robertport       |       241.75
+         155 | South Mariaside       |        76.65
+         222 | Baldwinfurt           |       170.28
+         425 | Elizabethshire        |       253.80
+          94 | West Anthony          |       212.30
+         177 | Kaylatown             |        96.96
+         312 | Pennyland             |       248.85
+postgres=#
+postgres=# -- 8) Find the customer who spent the most on orders
+
+postgres=# select c.customer_id, c.name, sum(o.total_amount) as total_spent from orders o JOIN customers c ON o.customer_id = c.customer_id group by c.customer_id, c.name order by total_spent desc limit 1;
+ customer_id |    name    | total_spent
+-------------+------------+-------------
+         457 | Kim Turner |     1398.90
+(1 row)
+
+
+postgres=# --  9) Calculate the stock remaining after fulfilling all orders
+
+postgres=# select b.book_id, b.title, b.stock, COALESCE(SUM(o.quantity),0) as total_quantity, b.stock - COALESCE(SUM(o.quantity),0) as remaining_stock from books b left join orders o ON b.book_id = o.book_id group by b.book_id;
+ book_id |                            title                            | stock | total_quantity | remaining_stock
+---------+-------------------------------------------------------------+-------+----------------+-----------------
+      87 | Decentralized actuating analyzer                            |    98 |              0 |              98
+     184 | Enterprise-wide solution-oriented challenge                 |    22 |              9 |              13
+     477 | Distributed cohesive approach                               |    17 |             13 |               4
+     273 | Devolved zero administration process improvement            |    23 |             24 |              -1
+     394 | Integrated well-modulated Graphic Interface                 |    59 |              1 |              58
+      51 | Visionary optimizing project                                |    95 |              3 |              92
+     272 | Intuitive 4thgeneration intranet                            |    79 |             10 |              69
+      70 | Customer-focused context-sensitive process improvement      |    19 |              7 |              12
+     190 | Cross-platform even-keeled focus group                      |     4 |              0 |               4
+     350 | Exclusive 24hour groupware                                  |    49 |             14 |              35
+     278 | Exclusive asymmetric installation                           |    69 |              0 |              69
+     424 | Object-based secondary knowledgebase                        |    84 |              6 |              78
+     406 | De-engineered methodical capacity                           |    50 |              6 |              44
+     176 | Fundamental system-worthy parallelism                       |    52 |              8 |              44
+     309 | Mandatory homogeneous ability                               |    77 |              5 |              72
+     292 | Fully-configurable mission-critical artificial intelligence |     2 |              4 |              -2
+      22 | Multi-layered optimizing migration                          |    78 |              0 |              78
+     271 | Intuitive intangible circuit                                |    82 |              0 |              82
+     156 | Synergistic grid-enabled website                            |    34 |              6 |              28
+     417 | Persistent radical neural-net                               |    48 |              0 |              48
+     475 | Stand-alone zero administration emulation                   |   100 |              1 |              99
+     282 | Configurable local emulation                                |     3 |              3 |               0
+     173 | Ergonomic foreground Graphic Interface                      |   100 |              0 |             100
+     390 | Versatile mission-critical customer loyalty                 |    35 |             10 |              25
+     269 | Decentralized disintermediate Internet solution             |    42 |              5 |              37
+     261 | Intuitive content-based toolset                             |    52 |              6 |              46
+      42 | Pre-emptive interactive focus group                         |    82 |              5 |              77
+     189 | Grass-roots eco-centric task-force                          |    88 |             11 |              77
+     117 | Self-enabling contextually-based frame                      |    20 |              4 |              16
+     161 | Focused high-level strategy                                 |    11 |             14 |              -3
+     257 | Multi-channeled 24/7 functionalities                        |    33 |              0 |              33
+     125 | Public-key analyzing Graphic Interface                      |    16 |              5 |              11
+      40 | Adaptive didactic interface                                 |    94 |              1 |              93
+     113 | Versatile value-added structure                             |    76 |              4 |              72
+      43 | Function-based zero-defect initiative                       |    61 |              4 |              57
+     120 | Integrated secondary access                                 |    93 |             23 |              70
+     440 | Ergonomic disintermediate project                           |    68 |              0 |              68
+     187 | Total well-modulated groupware                              |     7 |              0 |               7
